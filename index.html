@@ -12,7 +12,6 @@
         :root {
             --underscore: #359EB4;
             --bg: #030C16; 
-            /* Branding colors */
             --a: #4FA8B0; 
             --i: #A1D3CF;
         }
@@ -28,7 +27,7 @@
         .logo-img { height: 80px; width: auto; }
 
         .signup-zone {
-            height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .email-field {
             border: 1px solid var(--underscore); padding: 5px; margin-top: 25px; display: flex;
@@ -39,7 +38,7 @@
 
         .scrolly-wrapper { position: relative; display: flex; width: 100%; }
 
-        /* Left Column: Sticky Stage */
+        /* Left Side: Sticky Stage */
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
             display: flex; justify-content: center; align-items: center;
@@ -48,31 +47,27 @@
 
         #main-svg {
             width: 85%; max-width: 450px; height: auto;
-            stroke: var(--underscore); stroke-width: 0.6; fill: #02080a;
-            /* BLUEPRINT GLOW: Multiple shadows for depth */
-            filter: drop-shadow(0 0 2px var(--underscore)) 
-                    drop-shadow(0 0 10px rgba(53, 158, 180, 0.4));
+            stroke: var(--underscore); stroke-width: 0.5; fill: #02080a;
+            filter: none; /* Glow completely removed */
         }
 
-        /* Right Column: Narrative */
+        /* Right Side: Narrative Top-Aligned */
         .text-column { width: 50%; position: relative; }
         .text-section { 
             height: 100vh; display: flex; 
-            align-items: center; /* Aligned to match the centered sticky animation */
-            padding: 0 12%; 
+            align-items: flex-start; 
+            /* This padding-top aligns the text baseline with the top of the SVG */
+            padding: 30vh 12% 0 12%; 
         }
-        
-        /* Adjusting the first section specifically to align with the starting bag position */
-        #sling-step { align-items: center; } 
 
         .text-box h2 { font-weight: 900; font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0; letter-spacing: -0.05em; line-height: 1; }
         .text-box p { font-size: 1.1rem; opacity: 0.5; line-height: 1.7; margin-top: 25px; max-width: 380px; }
         
         @media (max-width: 850px) {
             .scrolly-wrapper { flex-direction: column; }
-            .animation-column { width: 100%; height: 50vh; position: relative; border-right: none; }
+            .animation-column { width: 100%; height: 40vh; position: sticky; border-right: none; }
             .text-column { width: 100%; }
-            .text-section { height: auto; padding: 80px 10%; }
+            .text-section { height: auto; padding: 50px 10%; }
         }
     </style>
 </head>
@@ -104,9 +99,21 @@
                         <path id="path2" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
                         <path id="path3" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 63.526209,173.78083 61.999137,49.17173" />
-                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
-                    <path id="path6" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 61.998261,48.788404 33.641101,42.271542" />
+                    <g id="g3-4" transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
+                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
+                    </g>
+                    <g id="g3-4-2" transform="matrix(0.0955904,0.89977043,1.160524,-0.05772193,-101.03316,-17.689624)">
+                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
+                    </g>
+
+                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
+                          d="M 63.526209,173.78083 61.999137,49.17173" />
+                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
+                          d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
+                    <path id="path6" style="fill:#fae1b1;stroke:#359eb4;stroke-width:0.5;opacity:0;"
+                          d="M 61.998261,48.788404 33.641101,42.271542" />
                 </g>
             </svg>
         </div>
@@ -114,31 +121,32 @@
         <div class="text-column">
             <section class="text-section" id="sling-step">
                 <div class="text-box">
-                    <h2 style="color: var(--a);">01. SLING</h2>
-                    <p>3.15L core configuration. Stealth, rapid-access, and minimal footprint for urban transit.</p>
+                    <h2 style="color: var(--a);">SYSTEM: aeio_01</h2>
+                    <p>3.15L KINETIC CORE. High-tenacity architecture designed for transitional states. Minimal footprint, maximum mobility.</p>
                 </div>
             </section>
             <section class="text-section" id="trigger-morph">
                 <div class="text-box">
-                    <h2 style="color: var(--i);">02. DEPLOY</h2>
-                    <p>Internal structure unfolding. Chambers engaging. Volume adaptation in progress.</p>
+                    <h2 style="color: var(--i);">DEPLOY: PHASE II</h2>
+                    <p>ARCHITECTURAL SHIFT initiated. Structural coordinates expanding to meet utility requirements. Transitioning to full hauler capacity.</p>
                 </div>
             </section>
             <section class="text-section">
                 <div class="text-box">
-                    <h2 style="color: var(--underscore);">03. PACK</h2>
-                    <p>Total 24L capacity unlocked. Form and function engineered for the long haul.</p>
+                    <h2 style="color: var(--underscore);">MAXIMAL UTILITY</h2>
+                    <p>24L TERMINAL VOLUME reached. System fully operational. A footprint engineered for the long haul. Always completed by you.</p>
                 </div>
             </section>
         </div>
     </div>
 
     <section class="signup-zone" style="height: 100vh;">
-        <h2 style="font-weight:900; font-size: 3.5rem; margin: 0; letter-spacing: -3px;">JOIN THE 500</h2>
+        <h2 style="font-weight:900; font-size: 3.5rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>RESERVE</button>
         </div>
+        <p style="margin-top: 20px; opacity: 0.4; font-size: 0.8rem;">Allotment 01 is limited to 500 units. Secure priority access.</p>
     </section>
 
     <script>
@@ -164,10 +172,9 @@
                 end: "bottom center",
                 scrub: true
             },
-            opacity: 0.7
+            opacity: 0.8
         });
 
-        // REFRESH ON RESIZE
         window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
 </body>
