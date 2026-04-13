@@ -19,14 +19,12 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Branding */
         .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; }
         .logo-img { height: 60px; width: auto; }
 
-        /* Hero */
         .signup-zone {
             height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 0 20px; position: relative; z-index: 100;
+            text-align: center; padding: 0 20px; position: relative; z-index: 100; background: var(--bg);
         }
         .hero-sub {
             font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;
@@ -40,11 +38,7 @@
         input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; }
         button { background: var(--underscore); border: none; color: #030C16; padding: 0 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
-        /* Scrolly Area */
-        .scrolly-wrapper { 
-            position: relative; width: 100%; display: flex; 
-            margin: 10vh 0; /* Ensures space after Hero and before Footer */
-        }
+        .scrolly-wrapper { position: relative; width: 100%; display: flex; }
 
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
@@ -59,9 +53,7 @@
 
         .text-column { width: 50%; position: relative; z-index: 50; }
         .text-section { 
-            height: 70vh; /* Reduced height to bring text closer together */
-            display: flex; align-items: center; 
-            padding: 0 12%; 
+            height: 70vh; display: flex; align-items: center; padding: 0 12%; 
         }
 
         .text-box {
@@ -72,15 +64,14 @@
         .text-box h2 { font-weight: 900; font-size: 2.2rem; margin: 0; letter-spacing: -0.05em; line-height: 1; }
         .text-box p { font-size: 1rem; opacity: 0.8; line-height: 1.6; margin-top: 15px; max-width: 350px; }
 
-        /* MOBILE HUD RESTRUCTURE */
         @media (max-width: 850px) {
             .animation-column {
                 width: 100vw; position: fixed; top: 0; left: 0;
-                border-right: none; opacity: 0.4; pointer-events: none;
-                z-index: 5;
+                border-right: none; opacity: 0; /* Hidden by default for Hero/End */
+                pointer-events: none; z-index: 5;
             }
             .text-column { width: 100vw; z-index: 50; }
-            #sling-step { height: 140vh; align-items: flex-end; padding-bottom: 5vh; }
+            #sling-step { height: 120vh; align-items: flex-end; padding-bottom: 5vh; }
             .text-section { height: 60vh; justify-content: center; text-align: center; }
             .text-box { border-left: none; border-top: 2px solid var(--underscore); width: 90%; background: rgba(3, 12, 22, 0.95); }
         }
@@ -102,25 +93,29 @@
     </section>
 
     <div class="scrolly-wrapper" id="master-trigger">
-        <div class="animation-column">
+        <div class="animation-column" id="bag-container">
             <svg id="main-svg" viewBox="0 0 210 297">
                 <g id="layer1">
-                    <path id="morph-path-main" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;"
-                          d="m 18.216194,79.826516 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 20.00202,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 1.01705,4.783668 -4.96234,5.87846 -27.04083,4.951016 -38.277435,6.427255 -88.711319,12.44401 -8.619306,0.49342 -17.5765,-2.401611 -21.808665,-5.28776 0,0 -2.529868,-1.028199 -2.450468,-7.258614 -0.0152,-1.44171 -0.195328,2.370234 3.678426,4.491574 z" />
+                    <path id="morph-path-main" d="m 18.216194,79.826516 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 20.00202,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 1.01705,4.783668 -4.96234,5.87846 -27.04083,4.951016 -38.277435,6.427255 -88.711319,12.44401 -8.619306,0.49342 -17.5765,-2.401611 -21.808665,-5.28776 0,0 -2.529868,-1.028199 -2.450468,-7.258614 -0.0152,-1.44171 -0.195328,2.370234 3.678426,4.491574 z" />
                     
-                    <path id="path1-1" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;"
-                          d="m 14.526805,74.200506 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363562,-4.03057 30.363562,-4.03057 l 43.53459,-4.61369 c 10.7814,-1.32027 20.75393,5.93662 2.94199,-6.91577 -7.43272,-5.36316 -14.99434,-4.18072 -32.62661,-2.2646 -17.62175,1.91498 -42.539614,4.53999 -52.933081,6.15922 -12.199418,1.90058 -15.967734,6.21551 -16.645477,17.45201 z" />
+                    <path id="path1-1" d="m 14.526805,74.200506 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363562,-4.03057 30.363562,-4.03057 l 43.53459,-4.61369 c 10.7814,-1.32027 20.75393,5.93662 2.94199,-6.91577 -7.43272,-5.36316 -14.99434,-4.18072 -32.62661,-2.2646 -17.62175,1.91498 -42.539614,4.53999 -52.933081,6.15922 -12.199418,1.90058 -15.967734,6.21551 -16.645477,17.45201 z" />
 
-                    <g transform="translate(-34.26396,-121.14757)">
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
+                    <g id="g3" transform="translate(-34.26396,-121.14757)">
+                        <path d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                        <path d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-                    <g transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                    <g id="g3-4" transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
+                        <path d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                        <path d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 63.526209,173.78083 61.999137,49.17173" />
-                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
-                    <path id="path6" style="fill:#fae1b1;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 61.998261,48.788404 33.641101,42.271542" />
+                    <g id="g3-4-2" transform="matrix(0.0955904,0.89977043,1.160524,-0.05772193,-101.03316,-17.689624)">
+                        <path d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
+                        <path d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
+                    </g>
+
+                    <path id="path4" style="fill:none;opacity:0;" d="M 63.526209,173.78083 61.999137,49.17173" />
+                    <path id="path5" style="fill:none;opacity:0;" d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
+                    <path id="path6" style="fill:#fae1b1;opacity:0;" d="M 61.998261,48.788404 33.641101,42.271542" />
                 </g>
             </svg>
         </div>
@@ -138,7 +133,7 @@
                     <p>ARCHITECTURAL SHIFT. Structural coordinates expanding to meet utility requirements. Transitioning to full capacity.</p>
                 </div>
             </section>
-            <section class="text-section">
+            <section class="text-section" id="last-step">
                 <div class="text-box">
                     <h2 style="color: var(--underscore);">MAXIMAL UTILITY</h2>
                     <p>24L TERMINAL VOLUME reached. System fully operational. Engineered for the long haul.</p>
@@ -147,7 +142,7 @@
         </div>
     </div>
 
-    <section class="signup-zone" style="height: 100vh;">
+    <section class="signup-zone" id="footer-zone">
         <h2 style="font-weight:900; font-size: 3rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
@@ -160,27 +155,43 @@
 
         const backpackD = "m 18.216258,79.826801 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.028955 0.09223,-21.028955 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585311,-4.7493 c 0,0 45.85317,-0.26519 45.16609,12.56054 -0.17519,12.569778 -0.22903,17.7041 -0.22903,17.7041 0,0 4.60038,105.628754 0.66861,108.515214 -27.04084,4.95101 -45.18815,2.84393 -95.622032,8.86069 -8.619306,0.49342 -43.171701,-2.14567 -47.91577,-8.10324 0,0 -0.994156,-85.236409 -0.914756,-91.466829 -0.0152,-1.44171 -0.195328,2.37024 3.678426,4.49157 z";
 
+        // 1. MOBILE-ONLY VISIBILITY TOGGLE
+        ScrollTrigger.matchMedia({
+            "(max-width: 850px)": function() {
+                gsap.to("#bag-container", {
+                    scrollTrigger: {
+                        trigger: "#master-trigger",
+                        start: "top center", 
+                        end: "bottom center",
+                        toggleActions: "play reverse play reverse"
+                    },
+                    opacity: 0.4,
+                    duration: 0.5
+                });
+            }
+        });
+
+        // 2. TIGHT "SNAP" MORPH (WEB & MOBILE)
         let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: "#master-trigger",
                 start: "top center",
                 end: "bottom center",
-                scrub: 0.5 // Lower scrub value makes the morph faster and more reactive
+                scrub: 0.5 // Fast scrub for snap feel
             }
         });
 
-        // The "Faster" Morph window: Morph starts at 40% and finishes at 60% of the scroll
+        // Morph starts later and finishes earlier for a "Snap" effect
         tl.to("#morph-path-main", {
             attr: { d: backpackD },
-            duration: 0.2, // Short duration within the timeline for a fast snap
-            ease: "power2.inOut"
-        }, 0.4); 
+            duration: 0.3, // Very short duration in the timeline
+            ease: "power3.inOut"
+        }, 0.45); // Happens right in the middle (45% into scroll)
 
         tl.to(["#path4", "#path5", "#path6"], {
             opacity: 0.8,
-            duration: 0.1,
-            ease: "none"
-        }, 0.5);
+            duration: 0.2
+        }, 0.55);
 
         window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
