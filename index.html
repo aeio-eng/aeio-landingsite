@@ -13,61 +13,77 @@
             --underscore: #359EB4;
             --bg: #030C16; 
             --a: #4FA8B0; 
-            --i: #A1D3CF;
         }
         body, html { 
             background: var(--bg); color: #ffffff; margin: 0; padding: 0;
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        .header-nav {
-            width: 100%; text-align: center; padding: 60px 0 20px 0;
-            background: var(--bg);
-        }
-        .logo-img { height: 80px; width: auto; }
+        /* Branding */
+        .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; }
+        .logo-img { height: 60px; width: auto; }
 
         .signup-zone {
-            height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 0 20px;
         }
-        .email-field {
-            border: 1px solid var(--underscore); padding: 5px; margin-top: 25px; display: flex;
-            background: rgba(0,0,0,0.3); width: 90%; max-width: 400px;
+        
+        .hero-sub {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: -10px; /* Pulls it closer to the H1 */
+            font-weight: 400;
         }
-        input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; }
-        button { background: var(--underscore); border: none; color: #030C16; padding: 0 25px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
+        .email-field {
+            border: 1px solid var(--underscore); padding: 5px; margin-top: 35px; display: flex;
+            background: rgba(0,0,0,0.3); width: 100%; max-width: 400px;
+        }
+        input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; width: 100%; }
+        button { background: var(--underscore); border: none; color: #030C16; padding: 0 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+
+        /* THE SCROLLY ENGINE */
         .scrolly-wrapper { position: relative; display: flex; width: 100%; }
 
-        /* Left Side: Sticky Stage */
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden; border-right: 1px solid rgba(53, 158, 180, 0.1);
+            overflow: hidden; z-index: 1;
         }
 
         #main-svg {
             width: 85%; max-width: 450px; height: auto;
             stroke: var(--underscore); stroke-width: 0.5; fill: #02080a;
-            filter: none; /* Glow completely removed */
         }
 
-        /* Right Side: Narrative Top-Aligned */
-        .text-column { width: 50%; position: relative; }
+        .text-column { width: 50%; position: relative; z-index: 2; }
         .text-section { 
-            height: 100vh; display: flex; 
-            align-items: flex-start; 
-            /* This padding-top aligns the text baseline with the top of the SVG */
+            height: 100vh; display: flex; align-items: flex-start; 
             padding: 30vh 12% 0 12%; 
         }
 
-        .text-box h2 { font-weight: 900; font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0; letter-spacing: -0.05em; line-height: 1; }
-        .text-box p { font-size: 1.1rem; opacity: 0.5; line-height: 1.7; margin-top: 25px; max-width: 380px; }
-        
+        .text-box {
+            background: rgba(3, 12, 22, 0.7);
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            border-left: 2px solid var(--underscore);
+        }
+
+        .text-box h2 { font-weight: 900; font-size: 2.5rem; margin: 0; letter-spacing: -0.05em; line-height: 1; }
+        .text-box p { font-size: 1rem; opacity: 0.8; line-height: 1.6; margin-top: 15px; max-width: 350px; }
+
         @media (max-width: 850px) {
-            .scrolly-wrapper { flex-direction: column; }
-            .animation-column { width: 100%; height: 40vh; position: sticky; border-right: none; }
-            .text-column { width: 100%; }
-            .text-section { height: auto; padding: 50px 10%; }
+            .animation-column {
+                width: 100vw; position: fixed; top: 0; left: 0;
+                opacity: 0.35;
+            }
+            .text-column { width: 100vw; }
+            .text-section { justify-content: center; align-items: center; padding: 0 10%; }
+            .text-box { background: rgba(3, 12, 22, 0.9); border: 1px solid rgba(53, 158, 180, 0.3); width: 100%; text-align: center; }
+            .hero-sub { font-size: 0.9rem; letter-spacing: 1px; }
         }
     </style>
 </head>
@@ -78,7 +94,9 @@
     </nav>
 
     <section class="signup-zone">
-        <h1 style="font-weight:900; font-size: 5rem; margin: 0; letter-spacing: -5px;">aeio_</h1>
+        <h1 style="font-weight:900; font-size: clamp(4rem, 12vw, 6rem); margin: 0; letter-spacing: -5px;">aeio_</h1>
+        <p class="hero-sub">your day changes, your bag should too</p>
+        
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>ACCESS</button>
@@ -94,26 +112,13 @@
                     
                     <path id="path1-1" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;"
                           d="m 14.526805,74.200506 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363562,-4.03057 30.363562,-4.03057 l 43.53459,-4.61369 c 10.7814,-1.32027 20.75393,5.93662 2.94199,-6.91577 -7.43272,-5.36316 -14.99434,-4.18072 -32.62661,-2.2646 -17.62175,1.91498 -42.539614,4.53999 -52.933081,6.15922 -12.199418,1.90058 -15.967734,6.21551 -16.645477,17.45201 z" />
-
                     <g id="g3" transform="translate(-34.26396,-121.14757)">
-                        <path id="path2" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path id="path3" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-                    <g id="g3-4" transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
                         <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
                         <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-                    <g id="g3-4-2" transform="matrix(0.0955904,0.89977043,1.160524,-0.05772193,-101.03316,-17.689624)">
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-
-                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="M 63.526209,173.78083 61.999137,49.17173" />
-                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
-                    <path id="path6" style="fill:#fae1b1;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="M 61.998261,48.788404 33.641101,42.271542" />
+                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 63.526209,173.78083 61.999137,49.17173" />
+                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
+                    <path id="path6" style="fill:#fae1b1;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 61.998261,48.788404 33.641101,42.271542" />
                 </g>
             </svg>
         </div>
@@ -122,31 +127,31 @@
             <section class="text-section" id="sling-step">
                 <div class="text-box">
                     <h2 style="color: var(--a);">SYSTEM: aeio_01</h2>
-                    <p>3.15L KINETIC CORE. High-tenacity architecture designed for transitional states. Minimal footprint, maximum mobility.</p>
+                    <p>3.15L KINETIC CORE. High-tenacity architecture designed for transitional states. Precision mobility for high-frequency gear.</p>
                 </div>
             </section>
             <section class="text-section" id="trigger-morph">
                 <div class="text-box">
                     <h2 style="color: var(--i);">DEPLOY: PHASE II</h2>
-                    <p>ARCHITECTURAL SHIFT initiated. Structural coordinates expanding to meet utility requirements. Transitioning to full hauler capacity.</p>
+                    <p>ARCHITECTURAL SHIFT. Structural coordinates expanding to meet utility requirements. Transitioning from sling to terminal hauler.</p>
                 </div>
             </section>
             <section class="text-section">
                 <div class="text-box">
                     <h2 style="color: var(--underscore);">MAXIMAL UTILITY</h2>
-                    <p>24L TERMINAL VOLUME reached. System fully operational. A footprint engineered for the long haul. Always completed by you.</p>
+                    <p>24L TERMINAL VOLUME. System fully operational. Engineered for the long haul. Always completed by you.</p>
                 </div>
             </section>
         </div>
     </div>
 
     <section class="signup-zone" style="height: 100vh;">
-        <h2 style="font-weight:900; font-size: 3.5rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
+        <h2 style="font-weight:900; font-size: 3rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>RESERVE</button>
         </div>
-        <p style="margin-top: 20px; opacity: 0.4; font-size: 0.8rem;">Allotment 01 is limited to 500 units. Secure priority access.</p>
+        <p style="margin-top: 20px; opacity: 0.4; font-size: 0.8rem;">Allotment 01 limited to 500 units.</p>
     </section>
 
     <script>
