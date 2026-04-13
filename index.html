@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aeio_ | Vowels Without U</title>
+    <title>aeio_ | Always Completed By You</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -11,71 +11,90 @@
     <style>
         :root {
             --underscore: #359EB4;
-            --bg: #05161E; /* Midnight Teal */
+            --bg: #030C16; /* Deep Tactical Navy */
             --a: #2F6E6F; --e: #0B3F59; --i: #7AADA8;
         }
         body, html { 
-            background: var(--bg); color: white; margin: 0; padding: 0;
-            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            background: var(--bg); color: #ffffff; margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* 1. COMPACT FIXED HEADER */
+        /* Fixed Branding - No Glow */
         .header-nav {
-            position: fixed; top: 15px; /* Reduced space from top */
-            width: 100%; text-align: center; z-index: 1000;
+            position: fixed; top: 15px; width: 100%; text-align: center; z-index: 1000;
+            pointer-events: none;
         }
-        /* 2. LARGER LOGO WITH HUD GLOW */
         .logo-img { 
-            height: 70px; /* 2.5x larger */
-            width: auto; 
-            /* Subtle phosphor glow for noir feel */
-            filter: drop-shadow(0 0 10px rgba(53, 158, 180, 0.4)); 
+            height: 75px; width: auto; pointer-events: auto;
+            filter: none; /* Glow removed */
         }
 
-        /* Signup Blocks */
+        /* Signup Sections */
         .signup-zone {
             height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
             position: relative; z-index: 50; background: var(--bg);
-            /* Reduced padding to bring sections closer */
-            padding-bottom: 5vh; 
         }
         .email-field {
             border: 1px solid var(--underscore); padding: 5px; margin-top: 25px; display: flex;
+            background: rgba(0,0,0,0.3);
         }
         input { background: transparent; border: none; color: white; padding: 15px; width: 220px; outline: none; font-family: 'Inter'; }
-        button { background: var(--underscore); border: none; color: #05161E; padding: 0 25px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
-        .early-bird { letter-spacing: 5px; font-size: 11px; margin-top: 15px; opacity: 0.7; }
+        button { background: var(--underscore); border: none; color: #030C16; padding: 0 25px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+        .early-bird { letter-spacing: 5px; font-size: 11px; margin-top: 15px; opacity: 0.5; }
 
-        /* Scrollytelling Layout */
-        .scrolly-wrapper { display: flex; position: relative; width: 100%; }
+        /* The Scrollytelling Wrapper */
+        .scrolly-wrapper { 
+            position: relative; 
+            display: flex; 
+            width: 100%;
+            background: var(--bg);
+        }
 
-        /* Left Side: Sticky Animation */
+        /* LEFT COLUMN: The Visual Stage (Sticky) */
         .animation-column {
-            flex: 1; height: 100vh; position: sticky; top: 0;
-            display: flex; justify-content: center; align-items: center;
-            /* 3. TIGHT 1PX BORDER */
-            border-right: 1px solid #1a3c4a;
+            width: 50%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-right: 1px solid rgba(53, 158, 180, 0.1);
+            z-index: 5;
         }
 
         #main-svg {
-            width: 85%; max-width: 500px; height: auto;
-            stroke: var(--underscore); stroke-width: 0.5; fill: #02080a;
-            filter: drop-shadow(0 0 15px rgba(53, 158, 180, 0.2));
+            width: 80%;
+            max-width: 450px;
+            height: auto;
+            stroke: var(--underscore);
+            stroke-width: 0.5;
+            fill: #010203;
+            filter: drop-shadow(0 0 20px rgba(53, 158, 180, 0.2));
         }
 
-        /* Right Side: Scroll Content */
-        .text-column { flex: 1; }
-        .text-section { 
-            height: 120vh; /* Reduced height for tighter narrative */
-            display: flex; align-items: center; padding: 0 12%; 
+        /* RIGHT COLUMN: The Content (Scrolling) */
+        .text-column { 
+            width: 50%;
+            position: relative;
+            z-index: 10;
         }
-        .text-box h2 { font-weight: 900; font-size: 3.2rem; margin: 0; letter-spacing: -2px; line-height: 1; }
-        .text-box p { font-size: 1.15rem; opacity: 0.6; line-height: 1.6; margin-top: 20px; }
+
+        .text-section { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 15%; 
+        }
+
+        .text-box h2 { font-weight: 900; font-size: 3.5rem; margin: 0; letter-spacing: -3px; line-height: 1; }
+        .text-box p { font-size: 1.15rem; opacity: 0.5; line-height: 1.7; margin-top: 25px; }
         
         @media (max-width: 768px) {
             .scrolly-wrapper { flex-direction: column; }
-            .animation-column { position: relative; height: 50vh; border-right: none; border-bottom: 1px solid #1a3c4a; }
-            .logo-img { height: 50px; }
+            .animation-column { width: 100%; height: 50vh; position: relative; border-right: none; }
+            .text-column { width: 100%; }
         }
     </style>
 </head>
@@ -86,8 +105,7 @@
     </nav>
 
     <section class="signup-zone">
-        <h1 style="font-weight:900; font-size: 4.5rem; margin: 0; letter-spacing: -4px;">aeio_</h1>
-        <p style="letter-spacing: 3px; opacity: 0.6; font-size: 0.9rem; margin-top: 5px;">VOWELS WITHOUT U.</p>
+        <h1 style="font-weight:900; font-size: 5rem; margin: 0; letter-spacing: -5px; color: #fff;">aeio_</h1>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>ACCESS</button>
@@ -100,7 +118,7 @@
             <svg id="main-svg" viewBox="0 0 210 297">
                 <g id="layer1">
                     <path id="morph-path-main" 
-                          style="fill:#02080a;fill-opacity:1;stroke:#359eb4;stroke-width:0.5;"
+                          style="fill:#010203;fill-opacity:1;stroke:#359eb4;stroke-width:0.5;"
                           d="m 14.526905,74.200346 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.5853,-4.7493 c 0,0 20.00203,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 0.99246,4.65696 -4.96234,5.87846 -5.95481,1.2215 -32.44605,5.80212 -32.44605,5.80212 l -26.10952,3.28277 -30.155744,3.35912 c 0,0 -3.893526,0.38172 -5.802117,-0.0763 -1.90859,-0.45806 -7.015403,-1.52125 -7.015403,-1.52125 l -5.867114,-1.96973 -3.124031,-1.72048 c 0,0 -2.490168,-1.90159 -2.490168,-5.75003 0,-3.84844 0.02883,-2.64314 0.02883,-2.64314 z" />
                     
                     <path id="backpack-details" 
@@ -111,29 +129,29 @@
         </div>
 
         <div class="text-column">
-            <section class="text-section" id="sling-start">
+            <section class="text-section" id="sling-step">
                 <div class="text-box">
                     <h2 style="color: var(--a);">01. SLING</h2>
-                    <p>The core 3.15L configuration. Precision engineered for the minimal commute. X-Pac finish.</p>
+                    <p>The 3.15L core. Precision mobility. Stealth by default.</p>
                 </div>
             </section>
-            <section class="text-section" id="trigger-morph">
+            <section class="text-section" id="deploy-step">
                 <div class="text-box">
-                    <h2 style="color: var(--i);">02. UNFOLD</h2>
-                    <p>Core expansion initiated. 210D Ripstop chambers engaging. Volume is variable.</p>
+                    <h2 style="color: var(--i);">02. DEPLOY</h2>
+                    <p>Morphing internal structure. Structural expansion in progress.</p>
                 </div>
             </section>
-            <section class="text-section">
+            <section class="text-section" id="pack-step">
                 <div class="text-box">
                     <h2 style="color: var(--underscore);">03. PACK</h2>
-                    <p>Maximum capacity reached. A complete transformation. Completion is your move.</p>
+                    <p>24L capacity reached. A complete transformation.</p>
                 </div>
             </section>
         </div>
     </div>
 
     <section class="signup-zone">
-        <h2 style="font-weight:900; font-size: 3.2rem; margin: 0; letter-spacing: -2px;">JOIN THE 500</h2>
+        <h2 style="font-weight:900; font-size: 3.5rem; margin: 0; letter-spacing: -3px;">JOIN THE 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>RESERVE</button>
@@ -143,44 +161,43 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // This is the "End Goal" (the full Backpack coordinates)
         const backpackD = "m 14.526905,74.200346 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 7.87065,-1.111502 13.56799,1.225786 3.38513,1.388722 31.41442,2.630585 31.15833,7.410864 -0.68709,12.825731 0.56608,128.091954 0.56608,128.091954 0,0 -3.50546,4.40968 -15.86692,3.56802 -6.06476,-0.41294 -42.2498,4.00531 -42.2498,4.00531 l -29.251329,2.89004 -14.05398,-0.96086 c 0,0 -29.38602,-4.07017 -34.06847,-4.93611 -6.787291,-1.25416 -7.675234,-1.2391 -7.651459,-19.18416 l 1.453144,-66.781754 c 0,0 -2.490168,-1.90159 -2.490168,-5.75003 0,-3.84844 0.02883,-2.64314 0.02883,-2.64314 z";
 
-        // THE MOTION ORCHESTRATION
-
-        // 1. Core Morph (Triggered by 02. Deploy section)
+        // THE MOTION LOGIC
+        
+        // 1. Morph path
         gsap.to("#morph-path-main", {
             scrollTrigger: {
-                trigger: "#trigger-morph",
-                start: "top center", // Starts when 02 text is in middle
-                end: "bottom center", // Ends when 02 text finishes
-                scrub: 1 // Synchronizes animation perfectly with scroll
+                trigger: "#deploy-step",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1
             },
-            attr: { d: backpackD }, // Morph the coordinates
+            attr: { d: backpackD },
             ease: "none"
         });
 
-        // 2. Extra Detail Fade In
+        // 2. Extra backpack details fade in
         gsap.to("#backpack-details", {
             scrollTrigger: {
-                trigger: "#trigger-morph",
+                trigger: "#deploy-step",
                 start: "top center",
+                end: "bottom center",
                 scrub: true
             },
             opacity: 0.6
         });
 
-        // 3. Overall expansion (Scaling the whole stage)
+        // 3. Overall expansion (Scaling)
         gsap.to("#main-svg", {
             scrollTrigger: {
-                trigger: "#trigger-morph", // Begins scaling when 02 starts
-                start: "top center",
-                endTrigger: "#end-trigger", // Finishes scaling at end of narrative
-                end: "bottom center",
+                trigger: "#deploy-step",
+                start: "top bottom",
+                endTrigger: "#pack-step",
+                end: "bottom top",
                 scrub: 1
             },
-            scale: 1.35, // Grows 35% larger
-            y: 50 // Subtle vertical parallax shift
+            scale: 1.5
         });
     </script>
 </body>
