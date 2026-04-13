@@ -17,17 +17,16 @@
         body, html { 
             background: var(--bg); color: #ffffff; margin: 0; padding: 0;
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
         }
 
         /* Branding */
         .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; }
         .logo-img { height: 60px; width: auto; }
 
-        /* Hero Section */
+        /* Hero */
         .signup-zone {
             height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 0 20px; position: relative; z-index: 10;
+            text-align: center; padding: 0 20px; position: relative; z-index: 100;
         }
         .hero-sub {
             font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;
@@ -41,20 +40,13 @@
         input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; }
         button { background: var(--underscore); border: none; color: #030C16; padding: 0 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
-        /* Scrolly Container */
-        .scrolly-wrapper { 
-            position: relative; 
-            display: flex; 
-            width: 100%; 
-            z-index: 5;
-        }
+        /* Scrolly Area */
+        .scrolly-wrapper { position: relative; width: 100%; display: flex; }
 
-        /* Left Side (Sticky Bag) */
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden; border-right: 1px solid rgba(53, 158, 180, 0.1);
-            pointer-events: none;
+            overflow: hidden; z-index: 10; border-right: 1px solid rgba(53, 158, 180, 0.1);
         }
 
         #main-svg {
@@ -62,49 +54,42 @@
             stroke: var(--underscore); stroke-width: 0.5; fill: #02080a;
         }
 
-        /* Right Side (Scrollable Text) */
-        .text-column { width: 50%; position: relative; }
+        .text-column { width: 50%; position: relative; z-index: 50; }
         .text-section { 
             height: 100vh; display: flex; align-items: flex-start; 
             padding: 30vh 12% 0 12%; 
         }
 
         .text-box {
-            padding: 20px;
-            border-left: 2px solid var(--underscore);
-            background: rgba(3, 12, 22, 0.4);
-            backdrop-filter: blur(5px);
+            padding: 20px; border-left: 2px solid var(--underscore);
+            background: rgba(3, 12, 22, 0.6); backdrop-filter: blur(8px);
         }
 
         .text-box h2 { font-weight: 900; font-size: 2.5rem; margin: 0; letter-spacing: -0.05em; line-height: 1; }
         .text-box p { font-size: 1rem; opacity: 0.8; line-height: 1.6; margin-top: 15px; max-width: 350px; }
 
-        /* MOBILE HUD RESTRUCTURE */
+        /* MOBILE OVERHAUL */
         @media (max-width: 850px) {
             .animation-column {
-                width: 100vw; position: sticky; top: 0; 
-                border-right: none; opacity: 0.35;
+                width: 100vw; position: fixed; top: 0; left: 0;
+                border-right: none; opacity: 0.4; pointer-events: none;
+                z-index: 5; /* Behind the text */
             }
-            .text-column { 
-                width: 100vw; 
-                z-index: 20; 
-                margin-top: -100vh; /* Keeps text over the bag */
-            }
+            .text-column { width: 100vw; z-index: 50; }
             
-            /* Add extra space before the first mobile HUD appears */
-            #sling-step {
-                padding-top: 100vh; /* Forces a full screen of "bag only" before text */
+            /* Space before first text box to let animation be seen solo */
+            #sling-step { 
+                height: 160vh; /* Extra long first section */
+                align-items: flex-end; /* Text sits at the bottom of this long section */
+                padding-bottom: 20vh;
             }
 
-            .text-section { justify-content: center; align-items: center; padding: 0 10%; }
+            .text-section { justify-content: center; text-align: center; }
             .text-box { 
-                background: rgba(3, 12, 22, 0.95); 
-                border: 1px solid rgba(53, 158, 180, 0.3); 
-                text-align: center;
-                border-left: none;
-                border-top: 2px solid var(--underscore);
+                border-left: none; border-top: 2px solid var(--underscore); 
+                width: 90%; background: rgba(3, 12, 22, 0.9);
             }
-            #main-svg { width: 90%; }
+            #main-svg { width: 85%; max-width: 350px; }
         }
     </style>
 </head>
@@ -123,7 +108,7 @@
         </div>
     </section>
 
-    <div class="scrolly-wrapper">
+    <div class="scrolly-wrapper" id="master-trigger">
         <div class="animation-column">
             <svg id="main-svg" viewBox="0 0 210 297">
                 <g id="layer1">
@@ -188,26 +173,27 @@
 
         const backpackD = "m 18.216258,79.826801 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.028955 0.09223,-21.028955 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585311,-4.7493 c 0,0 45.85317,-0.26519 45.16609,12.56054 -0.17519,12.569778 -0.22903,17.7041 -0.22903,17.7041 0,0 4.60038,105.628754 0.66861,108.515214 -27.04084,4.95101 -45.18815,2.84393 -95.622032,8.86069 -8.619306,0.49342 -43.171701,-2.14567 -47.91577,-8.10324 0,0 -0.994156,-85.236409 -0.914756,-91.466829 -0.0152,-1.44171 -0.195328,2.37024 3.678426,4.49157 z";
 
-        gsap.to("#morph-path-main", {
+        // MASTER TIMELINE
+        let tl = gsap.timeline({
             scrollTrigger: {
-                trigger: "#trigger-morph",
-                start: "top bottom",
+                trigger: "#master-trigger",
+                start: "top center",
                 end: "bottom center",
                 scrub: 1
-            },
-            attr: { d: backpackD },
-            ease: "none"
+            }
         });
 
-        gsap.to(["#path4", "#path5", "#path6"], {
-            scrollTrigger: {
-                trigger: "#trigger-morph",
-                start: "top bottom",
-                end: "bottom center",
-                scrub: true
-            },
-            opacity: 0.8
-        });
+        tl.to("#morph-path-main", {
+            attr: { d: backpackD },
+            duration: 1,
+            ease: "none"
+        }, 0.35);
+
+        tl.to(["#path4", "#path5", "#path6"], {
+            opacity: 0.8,
+            duration: 0.5,
+            ease: "none"
+        }, 0.45);
 
         window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
