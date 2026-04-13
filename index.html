@@ -3,133 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aeio_ | Vowels Without U</title>
+    <title>aeio_ | The Expansion</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
     <style>
         :root {
             --a: #2F6E6F; --e: #0B3F59; --i: #7AADA8; --o: #93AE88; --underscore: #359EB4;
             --bg: #050505;
         }
-        body, html { 
-            margin: 0; padding: 0; background: var(--bg); color: white; 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
+        body { 
+            background: var(--bg); color: white; margin: 0; 
+            font-family: 'Courier New', monospace; overflow-x: hidden;
         }
 
-        /* Technical Grid Overlay */
-        .grid-overlay {
+        /* The Grid */
+        .grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
                               linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px; pointer-events: none; z-index: 10;
+            background-size: 60px 60px; z-index: -1;
         }
 
-        /* Hero Section */
-        .section {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; position: relative;
+        /* Narrative Sections */
+        .scroll-section {
+            height: 120vh; /* Extra height for slower scrolling */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 10vh;
+            position: relative;
         }
 
-        .logo-container {
-            font-size: clamp(3rem, 15vw, 8rem); font-weight: 800;
-            letter-spacing: -5px; z-index: 5;
+        .label {
+            color: var(--underscore); font-size: 10px; letter-spacing: 5px;
+            border-left: 2px solid var(--underscore); padding-left: 10px;
+            margin-bottom: 20px; text-transform: uppercase;
         }
-        .a { color: var(--a); } .e { color: var(--e); } .i { color: var(--i); } 
-        .o { color: var(--o); } .u-score { color: var(--underscore); }
 
-        /* The Bag Image Logic */
+        .description {
+            max-width: 300px; font-size: 14px; line-height: 1.6;
+            opacity: 0.6; text-align: left;
+        }
+
+        /* THE BAG (The Actor) */
         .bag-container {
-            position: fixed; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px; height: 300px;
-            z-index: 2; opacity: 0;
+            width: 250px; height: 250px;
+            margin: 50px 0;
+            position: relative;
+            z-index: 10;
         }
+
         .bag-image {
-            width: 100%; height: 100%; object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(53, 158, 180, 0.2));
+            width: 100%; height: 100%;
+            object-fit: contain;
+            /* Thin tech-noir glow */
+            filter: drop-shadow(0 0 15px rgba(53, 158, 180, 0.3));
         }
 
-        /* Lead Magnet */
-        .cta-container {
-            z-index: 20; text-align: center; margin-top: 2rem;
-        }
-        .email-form {
-            display: flex; border: 1px solid var(--underscore); padding: 5px;
-            background: rgba(0,0,0,0.8);
-        }
-        input {
-            background: transparent; border: none; color: white;
-            padding: 15px; outline: none; width: 250px; font-family: monospace;
-        }
-        button {
-            background: var(--underscore); border: none; color: black;
-            padding: 0 30px; font-weight: bold; cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button:hover { background: white; }
-
-        .tagline { 
-            font-size: 10px; letter-spacing: 4px; opacity: 0.5; 
-            margin-bottom: 20px; text-transform: uppercase; 
+        /* Email signup at the very end */
+        .footer-cta {
+            height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-overlay"></div>
+    <div class="grid"></div>
 
-    <section class="section" id="hero-section">
-        <div class="logo-container">
-            <span class="a">a</span><span class="e">e</span><span class="i">i</span><span class="o">o</span><span class="u-score">_</span>
-        </div>
-        <div class="cta-container">
-            <p class="tagline">Vowels without U. Completion is your move.</p>
-            <div class="email-form">
-                <input type="email" placeholder="IDENTIFY@EMAIL.COM">
-                <button>ACCESS</button>
-            </div>
-            <p style="font-size: 10px; margin-top: 15px; opacity: 0.3;">RESERVATION: £85 EARLY BIRD</p>
+    <section class="scroll-section" id="start">
+        <div class="label">Unit 01: The Sling</div>
+        <p class="description">3.15L capacity. Compact. Stealth. The foundation of the aeio_ system.</p>
+        
+        <div class="bag-container" id="expanding-bag">
+            <img src="https://via.placeholder.com/600/2F6E6F/FFFFFF?text=SLING" class="bag-image" id="bag-img">
         </div>
     </section>
 
-    <section class="section" style="height: 200vh;" id="expansion-trigger">
-        <div class="bag-container" id="bag-frame">
-            <img src="https://via.placeholder.com/600x600/050505/359EB4?text=SLING+3.15L" class="bag-image" id="product-img">
+    <section class="scroll-section" id="middle">
+        <div class="label">Unit 02: Deployment</div>
+        <p class="description">Internal 210D Ripstop chambers engaging. Structural expansion in progress.</p>
+    </section>
+
+    <section class="scroll-section" id="end">
+        <div class="label">Unit 03: The Pack</div>
+        <p class="description">24L total volume. The user completes the brand. Ready for departure.</p>
+    </section>
+
+    <section class="footer-cta">
+        <div style="font-size: 2rem; margin-bottom: 20px;">a e i o _</div>
+        <p>JOIN THE 500. £85 EARLY BIRD.</p>
+        <div style="border: 1px solid var(--underscore); display: flex;">
+            <input type="email" placeholder="EMAIL" style="background:transparent; border:none; color:white; padding:10px;">
+            <button style="background:var(--underscore); border:none; padding:10px 20px; font-weight:bold;">RESERVE</button>
         </div>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animation 1: Logo splits apart on scroll
-        gsap.to(".logo-container", {
+        // This is the "Unfolding" animation
+        gsap.to("#expanding-bag", {
             scrollTrigger: {
-                trigger: "#hero-section",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
+                trigger: "#start",
+                start: "top top",      // Start when the first section is at top
+                endTrigger: "#end",    // End when the last section finishes
+                end: "bottom bottom",
+                scrub: 1,              // Smoothly follows the scroll
+                pin: false             // It scrolls WITH the page now
             },
-            scale: 1.5,
-            opacity: 0,
-            letterSpacing: "50px"
+            scale: 3.5,                // Grows to 3.5x its size
+            y: 200,                    // Moves down slightly faster than scroll for a "parallax" effect
+            ease: "none"
         });
 
-        // Animation 2: Bag appears and expands
-        gsap.to("#bag-frame", {
+        // OPTIONAL: Change color/texture as it grows
+        gsap.to("#bag-img", {
             scrollTrigger: {
-                trigger: "#expansion-trigger",
+                trigger: "#middle",
                 start: "top center",
-                end: "bottom center",
-                scrub: 1
+                scrub: true
             },
-            opacity: 1,
-            scale: 2.5, // This simulates the expansion from 3.15L to 24L
-            onUpdate: function() {
-                // Here is where you could swap the image source to the Backpack 
-                // once the scale hits a certain point.
-            }
+            filter: "hue-rotate(180deg) drop-shadow(0 0 30px #0B3F59)" // Shifts color from Green to Blue
         });
     </script>
 </body>
