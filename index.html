@@ -19,82 +19,57 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Responsive Branding */
+        /* 1. SCROLLABLE LOGO */
         .header-nav {
-            position: fixed; top: 2vh; width: 100%; text-align: center; z-index: 1000;
-            pointer-events: none;
+            width: 100%; text-align: center; padding: 40px 0 20px 0;
+            background: var(--bg);
         }
-        .logo-img { 
-            height: clamp(40px, 8vh, 80px); /* Scales based on window height */
-            width: auto; pointer-events: auto; 
-        }
+        .logo-img { height: 80px; width: auto; }
 
         .signup-zone {
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative; z-index: 50; background: var(--bg); text-align: center;
+            height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: var(--bg);
         }
         .email-field {
             border: 1px solid var(--underscore); padding: 5px; margin-top: 25px; display: flex;
             background: rgba(0,0,0,0.3); width: 90%; max-width: 400px;
         }
-        input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; min-width: 0; }
-        button { background: var(--underscore); border: none; color: #030C16; padding: 0 25px; font-weight: 800; cursor: pointer; text-transform: uppercase; white-space: nowrap; }
+        input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; }
+        button { background: var(--underscore); border: none; color: #030C16; padding: 0 25px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
-        /* The Scrollytelling Wrapper */
+        /* Scrollytelling Wrapper */
         .scrolly-wrapper { 
-            position: relative; 
-            display: flex; 
-            width: 100%;
-            background: var(--bg);
+            position: relative; display: flex; width: 100%;
         }
 
-        /* LEFT COLUMN: The Visual Stage (Sticky & Fluid) */
+        /* LEFT COLUMN: Sticky Animation */
         .animation-column {
-            width: 50%;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            border-right: 1px solid rgba(53, 158, 180, 0.1);
+            width: 50%; height: 100vh; position: sticky; top: 0;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; border-right: 1px solid rgba(53, 158, 180, 0.1);
         }
 
         #main-svg {
-            width: 75%; /* Fluid width */
-            max-width: 500px;
-            min-width: 250px; /* Prevents vanishing on small windows */
-            height: auto;
-            stroke: var(--underscore);
-            stroke-width: 0.5;
-            fill: #010203;
+            width: 80%; max-width: 450px; height: auto;
+            stroke: var(--underscore); stroke-width: 0.5; fill: #010203;
             transform-origin: center 30%;
         }
 
-        /* RIGHT COLUMN: The Content */
-        .text-column { width: 50%; position: relative; z-index: 10; }
-        .text-section { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
-        
-        .text-box h2 { 
-            font-weight: 900; 
-            font-size: clamp(2rem, 5vw, 4rem); /* Responsive font sizing */
-            margin: 0; letter-spacing: -0.05em; line-height: 1; 
+        /* RIGHT COLUMN: TOP-ALIGNED TEXT */
+        .text-column { width: 50%; position: relative; }
+        .text-section { 
+            height: 100vh; display: flex; 
+            align-items: flex-start; /* 2. Top-Aligned instead of middle */
+            padding: 15vh 10% 0 10%; /* Padding-top ensures it's not touching the very top edge */
         }
-        .text-box p { font-size: clamp(1rem, 1.5vw, 1.25rem); opacity: 0.5; line-height: 1.7; margin-top: 2vh; }
         
-        /* Mobile Breakpoint */
+        .text-box h2 { font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; letter-spacing: -0.05em; line-height: 1; }
+        .text-box p { font-size: clamp(1rem, 1.5vw, 1.25rem); opacity: 0.5; line-height: 1.7; margin-top: 2vh; max-width: 400px; }
+        
         @media (max-width: 850px) {
             .scrolly-wrapper { flex-direction: column; }
-            .animation-column { 
-                width: 100%; 
-                height: 60vh; 
-                position: sticky; /* Keep it sticky even on mobile for better UX */
-                border-right: none; 
-                border-bottom: 1px solid rgba(53, 158, 180, 0.1);
-            }
+            .animation-column { width: 100%; height: 50vh; position: sticky; border-right: none; }
             .text-column { width: 100%; }
-            #main-svg { width: 60%; }
         }
     </style>
 </head>
@@ -105,7 +80,7 @@
     </nav>
 
     <section class="signup-zone">
-        <h1 style="font-weight:900; font-size: clamp(3rem, 10vw, 6rem); margin: 0; letter-spacing: -0.05em; color: #fff;">aeio_</h1>
+        <h1 style="font-weight:900; font-size: clamp(3rem, 10vw, 6rem); margin: 0; letter-spacing: -0.05em;">aeio_</h1>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>ACCESS</button>
@@ -117,7 +92,7 @@
             <svg id="main-svg" viewBox="0 0 210 297">
                 <g id="layer1">
                     <path id="morph-path-main" style="fill:#010203;stroke:#359eb4;stroke-width:0.5;"
-                          d="m 14.526905,74.200346 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.5853,-4.7493 c 0,0 20.00203,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 0.99246,4.65696 -4.96234,5.87846 -5.95481,1.2215 -32.44605,5.80212 -32.44605,5.80212 l -26.10952,3.28277 -30.155744,3.35912 c 0,0 -3.893526,0.38172 -5.802117,-0.0763 -1.90859,-0.45806 -7.015403,-1.52125 -7.015403,-1.52125 l -5.867114,-1.96973 -3.124031,-1.72048 c 0,0 -2.490168,-1.90159 -2.490168,-5.75003 0,-3.84844 0.02883,-2.64314 0.02883,-2.64314 z" />
+                          d="m 14.526905,74.200346 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 20.00202,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 1.01705,4.783668 -4.96234,5.87846 -27.04083,4.951016 -38.277435,6.427255 -88.711319,12.44401 -8.619306,0.49342 -17.5765,-2.401611 -21.808665,-5.28776 0,0 -2.490168,-1.90159 -2.490168,-5.75003 0,-3.84844 0.02883,-2.64314 0.02883,-2.64314 z" />
                     
                     <path id="path1-1" style="fill:#010203;stroke:#359eb4;stroke-width:0.5;"
                           d="m 14.526805,74.200506 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363562,-4.03057 30.363562,-4.03057 l 43.53459,-4.61369 c 10.7814,-1.32027 20.75393,5.93662 2.94199,-6.91577 -7.43272,-5.36316 -14.99434,-4.18072 -32.62661,-2.2646 -17.62175,1.91498 -42.539614,4.53999 -52.933081,6.15922 -12.199418,1.90058 -15.967734,6.21551 -16.645477,17.45201 z" />
@@ -126,19 +101,8 @@
                         <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
                         <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-
-                    <g id="g3-4" transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
-                        <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-
-                    <g id="g3-4-2" transform="matrix(0.0955904,0.89977043,1.160524,-0.05772193,-101.03316,-17.689624)">
-                        <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#010203;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-
                     <path id="backpack-only-1" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="M 63.526209,173.78083 61.999137,49.17173 c 0,0 -28.403545,-5.497461 -28.403545,-7.024533" />
+                          d="M 63.526209,173.78083 61.999137,49.17173" />
                     <path id="backpack-only-2" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
                           d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
                 </g>
@@ -146,29 +110,29 @@
         </div>
 
         <div class="text-column">
-            <section class="text-section" id="sling-step">
+            <section class="text-section">
                 <div class="text-box">
                     <h2 style="color: var(--a);">01. SLING</h2>
-                    <p>The 3.15L core. Precision mobility. Stealth by default. Engineered for the essential.</p>
+                    <p>The core configuration. Precision-engineered for rapid mobility and essential stealth.</p>
                 </div>
             </section>
-            <section class="text-section" id="deploy-step">
+            <section class="text-section" id="trigger-morph">
                 <div class="text-box">
                     <h2 style="color: var(--i);">02. DEPLOY</h2>
-                    <p>Morphing internal structure. Structural expansion in progress. Deployment initialized.</p>
+                    <p>Core expansion initiated. Structural coordinates shifting. Volume adaptation in progress.</p>
                 </div>
             </section>
-            <section class="text-section" id="pack-step">
+            <section class="text-section" id="end-anchor">
                 <div class="text-box">
                     <h2 style="color: var(--underscore);">03. PACK</h2>
-                    <p>24L capacity reached. A complete transformation. Always completed by you.</p>
+                    <p>24L peak capacity reached. A complete transformation. You complete the brand.</p>
                 </div>
             </section>
         </div>
     </div>
 
-    <section class="signup-zone">
-        <h2 style="font-weight:900; font-size: clamp(2rem, 6vw, 4rem); margin: 0; letter-spacing: -3px;">JOIN THE 500</h2>
+    <section class="signup-zone" style="height: 100vh;">
+        <h2 style="font-weight:900; font-size: 4rem; margin: 0; letter-spacing: -3px;">JOIN THE 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>RESERVE</button>
@@ -178,12 +142,13 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        const backpackD = "m 14.526905,74.200346 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 7.87065,-1.111502 13.56799,1.225786 3.38513,1.388722 31.41442,2.630585 31.15833,7.410864 -0.68709,12.825731 0.56608,128.091954 0.56608,128.091954 0,0 -3.50546,4.40968 -15.86692,3.56802 -6.06476,-0.41294 -42.2498,4.00531 -42.2498,4.00531 l -29.251329,2.89004 -14.05398,-0.96086 c 0,0 -29.38602,-4.07017 -34.06847,-4.93611 -6.787291,-1.25416 -7.675234,-1.2391 -7.651459,-19.18416 l 1.453144,-66.781754 c 0,0 -2.490168,-1.90159 -2.490168,-5.75003 0,-3.84844 0.02883,-2.64314 0.02883,-2.64314 z";
+        // Revised Backpack Coordinates
+        const backpackD = "m 14.52688,74.200636 c 0,0 -0.18447,3.50483 3.68928,5.62617 3.87376,2.12134 9.22323,4.24268 9.22323,4.24268 0,0 5.16501,1.47572 5.07277,-3.96598 -0.0922,-5.44171 0.0922,-21.02896 0.0922,-21.02896 l -0.0496,-10.44149 c 0,0 -0.87881,-9.36399 7.88095,-12.58843 8.75975,-3.22445 30.36356,-4.03057 30.36356,-4.03057 l 42.58531,-4.7493 c 0,0 46.71071,2.535567 44.71523,11.249214 -0.0635,32.893522 0.72539,126.18381 0.72539,126.18381 0,0 3.50888,1.34776 -38.41974,4.57007 -29.992788,2.64925 -53.578253,8.15781 -79.7129,2.78418 -16.666897,-2.62178 -17.657597,0.52982 -25.173084,-5.32299 C 15.079882,149.01201 14.498,80.692256 14.498,76.843816 c 0,-3.84844 0.0288,-2.64314 0.0288,-2.64314 z";
 
-        // Morph main path
+        // Main Animation Sequence
         gsap.to("#morph-path-main", {
             scrollTrigger: {
-                trigger: "#deploy-step",
+                trigger: "#trigger-morph",
                 start: "top center",
                 end: "bottom center",
                 scrub: 1
@@ -192,10 +157,10 @@
             ease: "none"
         });
 
-        // Reveal backpack-only structural paths
+        // Detail Revealer
         gsap.to(["#backpack-only-1", "#backpack-only-2"], {
             scrollTrigger: {
-                trigger: "#deploy-step",
+                trigger: "#trigger-morph",
                 start: "top center",
                 end: "bottom center",
                 scrub: true
@@ -203,20 +168,19 @@
             opacity: 0.6
         });
 
-        // Responsive Scaling Logic
+        // Fluid Scaling
         gsap.to("#main-svg", {
             scrollTrigger: {
-                trigger: "#deploy-step",
+                trigger: "#trigger-morph",
                 start: "top bottom",
-                endTrigger: "#pack-step",
-                end: "bottom top",
+                endTrigger: "#end-anchor",
+                end: "bottom center",
                 scrub: 1
             },
-            scale: 1.4,
-            yPercent: 12
+            scale: 1.45,
+            yPercent: 15
         });
-        
-        // Refresh ScrollTrigger on window resize to ensure scaling is accurate
+
         window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
 </body>
