@@ -12,14 +12,15 @@
         :root {
             --underscore: #359EB4;
             --bg: #030C16; 
-            --a: #2F6E6F; --i: #7AADA8;
+            /* Branding colors */
+            --a: #4FA8B0; 
+            --i: #A1D3CF;
         }
         body, html { 
             background: var(--bg); color: #ffffff; margin: 0; padding: 0;
             font-family: 'Inter', sans-serif;
         }
 
-        /* Branding scrolls with page */
         .header-nav {
             width: 100%; text-align: center; padding: 60px 0 20px 0;
             background: var(--bg);
@@ -47,16 +48,23 @@
 
         #main-svg {
             width: 85%; max-width: 450px; height: auto;
-            stroke: var(--underscore); stroke-width: 0.5; fill: #02080a;
+            stroke: var(--underscore); stroke-width: 0.6; fill: #02080a;
+            /* BLUEPRINT GLOW: Multiple shadows for depth */
+            filter: drop-shadow(0 0 2px var(--underscore)) 
+                    drop-shadow(0 0 10px rgba(53, 158, 180, 0.4));
         }
 
-        /* Right Column: Top-Aligned Narrative */
+        /* Right Column: Narrative */
         .text-column { width: 50%; position: relative; }
         .text-section { 
-            height: 100vh; display: flex; align-items: flex-start; 
-            padding: 25vh 12% 0 12%; 
+            height: 100vh; display: flex; 
+            align-items: center; /* Aligned to match the centered sticky animation */
+            padding: 0 12%; 
         }
         
+        /* Adjusting the first section specifically to align with the starting bag position */
+        #sling-step { align-items: center; } 
+
         .text-box h2 { font-weight: 900; font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0; letter-spacing: -0.05em; line-height: 1; }
         .text-box p { font-size: 1.1rem; opacity: 0.5; line-height: 1.7; margin-top: 25px; max-width: 380px; }
         
@@ -64,6 +72,7 @@
             .scrolly-wrapper { flex-direction: column; }
             .animation-column { width: 100%; height: 50vh; position: relative; border-right: none; }
             .text-column { width: 100%; }
+            .text-section { height: auto; padding: 80px 10%; }
         }
     </style>
 </head>
@@ -95,44 +104,30 @@
                         <path id="path2" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
                         <path id="path3" style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
                     </g>
-
-                    <g id="g3-4" transform="matrix(0.12699179,0.89587803,1.1577962,-0.09826354,-164.95261,-3.7997837)">
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-
-                    <g id="g3-4-2" transform="matrix(0.0955904,0.89977043,1.160524,-0.05772193,-101.03316,-17.689624)">
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
-                        <path style="fill:#02080a;stroke:#359eb4;stroke-width:0.5;" d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
-                    </g>
-
-                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="M 63.526209,173.78083 61.999137,49.17173" />
-                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
-                    <path id="path6" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;"
-                          d="M 61.998261,48.788404 33.641101,42.271542" />
+                    <path id="path4" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 63.526209,173.78083 61.999137,49.17173" />
+                    <path id="path5" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="m 61.693723,48.866316 c 0,0 96.205557,-9.46785 96.510967,-10.689508" />
+                    <path id="path6" style="fill:none;stroke:#359eb4;stroke-width:0.5;opacity:0;" d="M 61.998261,48.788404 33.641101,42.271542" />
                 </g>
             </svg>
         </div>
 
         <div class="text-column">
-            <section class="text-section">
+            <section class="text-section" id="sling-step">
                 <div class="text-box">
                     <h2 style="color: var(--a);">01. SLING</h2>
-                    <p>The core configuration. 3.15L precision-cut volume. Stealth, rapid-access, and minimal footprint for urban transit.</p>
+                    <p>3.15L core configuration. Stealth, rapid-access, and minimal footprint for urban transit.</p>
                 </div>
             </section>
             <section class="text-section" id="trigger-morph">
                 <div class="text-box">
                     <h2 style="color: var(--i);">02. DEPLOY</h2>
-                    <p>Morphing internal structure. Structural coordinates shifting to meet the demands of the day. Volume adaptation in progress.</p>
+                    <p>Internal structure unfolding. Chambers engaging. Volume adaptation in progress.</p>
                 </div>
             </section>
             <section class="text-section">
                 <div class="text-box">
                     <h2 style="color: var(--underscore);">03. PACK</h2>
-                    <p>Total 24L capacity reached. A complete transformation of form and function. Engineered for the long haul.</p>
+                    <p>Total 24L capacity unlocked. Form and function engineered for the long haul.</p>
                 </div>
             </section>
         </div>
@@ -149,12 +144,8 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // STRETCHED BACKPACK TARGET DATA (POINT SYNCED)
         const backpackD = "m 18.216258,79.826801 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.028955 0.09223,-21.028955 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585311,-4.7493 c 0,0 45.85317,-0.26519 45.16609,12.56054 -0.17519,12.569778 -0.22903,17.7041 -0.22903,17.7041 0,0 4.60038,105.628754 0.66861,108.515214 -27.04084,4.95101 -45.18815,2.84393 -95.622032,8.86069 -8.619306,0.49342 -43.171701,-2.14567 -47.91577,-8.10324 0,0 -0.994156,-85.236409 -0.914756,-91.466829 -0.0152,-1.44171 -0.195328,2.37024 3.678426,4.49157 z";
 
-        // THE MOTION
-        
-        // Point-to-point morph with "none" ease for strict scroll tracking
         gsap.to("#morph-path-main", {
             scrollTrigger: {
                 trigger: "#trigger-morph",
@@ -166,7 +157,6 @@
             ease: "none"
         });
 
-        // Fade in structural components
         gsap.to(["#path4", "#path5", "#path6"], {
             scrollTrigger: {
                 trigger: "#trigger-morph",
@@ -177,6 +167,7 @@
             opacity: 0.7
         });
 
+        // REFRESH ON RESIZE
         window.addEventListener("resize", () => ScrollTrigger.refresh());
     </script>
 </body>
