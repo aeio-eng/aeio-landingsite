@@ -16,7 +16,7 @@
             font-family: 'Courier New', monospace; overflow-x: hidden;
         }
 
-        /* The Grid */
+        /* Technical Noir Grid */
         .grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
@@ -24,15 +24,16 @@
             background-size: 60px 60px; z-index: -1;
         }
 
-        /* Narrative Sections */
+        /* Layout Sections */
         .scroll-section {
-            height: 120vh; /* Extra height for slower scrolling */
+            height: 120vh; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding-top: 10vh;
+            padding-top: 15vh;
             position: relative;
+            z-index: 5;
         }
 
         .label {
@@ -42,90 +43,111 @@
         }
 
         .description {
-            max-width: 300px; font-size: 14px; line-height: 1.6;
+            max-width: 320px; font-size: 14px; line-height: 1.6;
             opacity: 0.6; text-align: left;
         }
 
-        /* THE BAG (The Actor) */
-        .bag-container {
-            width: 250px; height: 250px;
-            margin: 50px 0;
-            position: relative;
-            z-index: 10;
+        /* THE PRODUCT CONTAINER (STAYS CENTERED) */
+        .bag-stage {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .bag-image {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            /* Thin tech-noir glow */
-            filter: drop-shadow(0 0 15px rgba(53, 158, 180, 0.3));
+            /* Tech-noir glow effect */
+            filter: drop-shadow(0 0 20px rgba(53, 158, 180, 0.2));
+            transition: opacity 0.3s ease;
         }
 
-        /* Email signup at the very end */
+        /* Lead Magnet at the bottom */
         .footer-cta {
             height: 100vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center;
+            justify-content: center; align-items: center; background: var(--bg);
+            position: relative; z-index: 10;
         }
+        
+        .email-form {
+            display: flex; border: 1px solid var(--underscore); padding: 5px;
+            margin-top: 20px;
+        }
+        
+        input { background: transparent; border: none; color: white; padding: 15px; outline: none; width: 220px; }
+        button { background: var(--underscore); border: none; padding: 0 25px; font-weight: bold; cursor: pointer; }
+
     </style>
 </head>
 <body>
 
     <div class="grid"></div>
 
-    <section class="scroll-section" id="start">
+    <div class="bag-stage">
+        <img src="Image 1.jpeg" class="bag-image" id="product-img">
+    </div>
+
+    <section class="scroll-section" id="sling-view">
         <div class="label">Unit 01: The Sling</div>
-        <p class="description">3.15L capacity. Compact. Stealth. The foundation of the aeio_ system.</p>
-        
-        <div class="bag-container" id="expanding-bag">
-            <img src="image 1.png" class="bag-image" id="bag-img">
-        </div>
+        <p class="description">3.15L footprint. Precision engineered for the essential commute. X-Pac VX21 Green finish.</p>
     </section>
 
-    <section class="scroll-section" id="middle">
+    <section class="scroll-section" id="deployment-view">
         <div class="label">Unit 02: Deployment</div>
-        <p class="description">Internal 210D Ripstop chambers engaging. Structural expansion in progress.</p>
+        <p class="description">Core expansion initiated. Engaging 210D Ripstop chambers. Volume is variable.</p>
     </section>
 
-    <section class="scroll-section" id="end">
+    <section class="scroll-section" id="backpack-view">
         <div class="label">Unit 03: The Pack</div>
-        <p class="description">24L total volume. The user completes the brand. Ready for departure.</p>
+        <p class="description">24L total volume. A complete transformation. The user completes the brand.</p>
     </section>
 
     <section class="footer-cta">
-        <div style="font-size: 2rem; margin-bottom: 20px;">a e i o _</div>
-        <p>JOIN THE 500. £85 EARLY BIRD.</p>
-        <div style="border: 1px solid var(--underscore); display: flex;">
-            <input type="email" placeholder="EMAIL" style="background:transparent; border:none; color:white; padding:10px;">
-            <button style="background:var(--underscore); border:none; padding:10px 20px; font-weight:bold;">RESERVE</button>
+        <div style="font-size: 3rem; font-weight: bold; letter-spacing: -3px;">
+            <span style="color:var(--a)">a</span><span style="color:var(--e)">e</span><span style="color:var(--i)">i</span><span style="color:var(--o)">o</span><span style="color:var(--underscore)">_</span>
         </div>
+        <p style="letter-spacing: 5px; font-size: 10px; margin-top: 20px;">JOIN THE 500. £85 EARLY BIRD.</p>
+        <div class="email-form">
+            <input type="email" placeholder="IDENTIFY@EMAIL.COM">
+            <button>RESERVE</button>
+        </div>
+        <p style="font-size: 9px; opacity: 0.3; margin-top: 40px;">@weareaeio — completion is your move.</p>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // This is the "Unfolding" animation
-        gsap.to("#expanding-bag", {
+        const bagImg = document.getElementById("product-img");
+
+        // 1. Growing Animation
+        gsap.to(".bag-stage", {
             scrollTrigger: {
-                trigger: "#start",
-                start: "top top",      // Start when the first section is at top
-                endTrigger: "#end",    // End when the last section finishes
+                trigger: "#sling-view",
+                start: "top top",
+                endTrigger: "#backpack-view",
                 end: "bottom bottom",
-                scrub: 1,              // Smoothly follows the scroll
-                pin: false             // It scrolls WITH the page now
+                scrub: 1
             },
-            scale: 3.5,                // Grows to 3.5x its size
-            y: 200,                    // Moves down slightly faster than scroll for a "parallax" effect
+            scale: 2.8,  // Adjust this number to control how large it gets
             ease: "none"
         });
 
-        // OPTIONAL: Change color/texture as it grows
-        gsap.to("#bag-img", {
-            scrollTrigger: {
-                trigger: "#middle",
-                start: "top center",
-                scrub: true
+        // 2. Image Swap Logic
+        ScrollTrigger.create({
+            trigger: "#deployment-view",
+            start: "top center",
+            onEnter: () => {
+                bagImg.src = "Image 2.jpeg"; // Swap to Backpack
             },
-            filter: "hue-rotate(180deg) drop-shadow(0 0 30px #0B3F59)" // Shifts color from Green to Blue
+            onLeaveBack: () => {
+                bagImg.src = "Image 1.jpeg"; // Swap back to Sling
+            }
         });
     </script>
 </body>
