@@ -17,14 +17,30 @@
         body, html { 
             background: var(--bg); color: #ffffff; margin: 0; padding: 0;
             font-family: 'Inter', sans-serif;
+            position: relative; /* Essential for the blueprint grid background */
         }
 
-        .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; }
+        /* THE BLUEPRINT GRID BACKGROUND */
+        body::before {
+            content: "";
+            position: fixed; /* Grid stays still while content scrolls */
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Generating subtle white square grid lines */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; /* Adjust grid square size here */
+            background-position: center;
+            z-index: -1; /* Placed behind everything */
+            pointer-events: none; /* User can't click on it */
+        }
+
+        .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; z-index: 100; position: relative;}
         .logo-img { height: 60px; width: auto; }
 
         .signup-zone {
             height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 0 20px; position: relative; z-index: 100; background: var(--bg);
+            text-align: center; padding: 0 20px; position: relative; z-index: 100; background: transparent;
         }
         .hero-sub {
             font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;
@@ -38,7 +54,7 @@
         input { background: transparent; border: none; color: white; padding: 15px; flex-grow: 1; outline: none; font-family: 'Inter'; }
         button { background: var(--underscore); border: none; color: #030C16; padding: 0 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
-        .scrolly-wrapper { position: relative; width: 100%; display: flex; }
+        .scrolly-wrapper { position: relative; width: 100%; display: flex; z-index: 10;}
 
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
@@ -142,7 +158,7 @@
         </div>
     </div>
 
-    <section class="signup-zone" id="footer-zone">
+    <section class="signup-zone" id="footer-zone" style="height: 100vh; position: relative; z-index: 100; background: var(--bg);">
         <h2 style="font-weight:900; font-size: 3rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
@@ -155,14 +171,14 @@
 
         const backpackD = "m 18.216258,79.826801 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.028955 0.09223,-21.028955 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585311,-4.7493 c 0,0 45.85317,-0.26519 45.16609,12.56054 -0.17519,12.569778 -0.22903,17.7041 -0.22903,17.7041 0,0 4.60038,105.628754 0.66861,108.515214 -27.04084,4.95101 -45.18815,2.84393 -95.622032,8.86069 -8.619306,0.49342 -43.171701,-2.14567 -47.91577,-8.10324 0,0 -0.994156,-85.236409 -0.914756,-91.466829 -0.0152,-1.44171 -0.195328,2.37024 3.678426,4.49157 z";
 
-        // 1. MOBILE-ONLY VISIBILITY TOGGLE
+        // 1. MOBILE-ONLY VISIBILITY TOGGLE (Stays Hidden in Hero/End Zones)
         ScrollTrigger.matchMedia({
             "(max-width: 850px)": function() {
                 gsap.to("#bag-container", {
                     scrollTrigger: {
                         trigger: "#master-trigger",
-                        start: "top center", 
-                        end: "bottom center",
+                        start: "top center", // Only fade in after leaving Hero
+                        end: "bottom center", // Fade out before hitting Footer
                         toggleActions: "play reverse play reverse"
                     },
                     opacity: 0.4,
@@ -176,17 +192,16 @@
             scrollTrigger: {
                 trigger: "#master-trigger",
                 start: "top center",
-                end: "bottom center",
-                scrub: 0.5 // Fast scrub for snap feel
+                end: "+=100%", // LOCK ANIMATION: Extends the sticky pinning so bag stays with text
+                scrub: 0.5
             }
         });
 
-        // Morph starts later and finishes earlier for a "Snap" effect
         tl.to("#morph-path-main", {
             attr: { d: backpackD },
-            duration: 0.3, // Very short duration in the timeline
+            duration: 0.3,
             ease: "power3.inOut"
-        }, 0.45); // Happens right in the middle (45% into scroll)
+        }, 0.45);
 
         tl.to(["#path4", "#path5", "#path6"], {
             opacity: 0.8,
