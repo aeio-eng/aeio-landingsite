@@ -15,7 +15,6 @@
             --a: #4FA8B0; 
         }
         
-        /* 1. SETUP GLOBAL BACKGROUND */
         body, html { 
             background-color: var(--bg); 
             color: #ffffff; 
@@ -25,8 +24,7 @@
             min-height: 100%;
         }
 
-        /* 2. THE BLUEPRINT GRID */
-        /* Fixed to the screen so it doesn't move when you scroll */
+        /* BLUEPRINT GRID */
         body::before {
             content: "";
             position: fixed;
@@ -41,10 +39,7 @@
             pointer-events: none;
         }
 
-        /* Ensure all containers are transparent to let the grid show through */
-        section, div, nav {
-            background-color: transparent !important;
-        }
+        section, div, nav { background-color: transparent !important; }
 
         .header-nav { width: 100%; text-align: center; padding: 40px 0 20px 0; position: relative; z-index: 10; }
         .logo-img { height: 60px; width: auto; }
@@ -53,6 +48,12 @@
             height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center; padding: 0 20px; position: relative; z-index: 10;
         }
+        
+        /* Removed Top Padding for Bottom Section */
+        #footer-zone {
+            height: 100vh; padding: 0 20px;
+        }
+
         .hero-sub {
             font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;
             opacity: 0.7; margin-top: 25px; font-weight: 400;
@@ -68,10 +69,11 @@
 
         .scrolly-wrapper { position: relative; width: 100%; display: flex; z-index: 5; }
 
+        /* Middle Dividing Line Removed */
         .animation-column {
             width: 50%; height: 100vh; position: sticky; top: 0;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden; border-right: 1px solid rgba(53, 158, 180, 0.1);
+            overflow: hidden; border-right: none; 
         }
 
         #main-svg {
@@ -95,8 +97,7 @@
         @media (max-width: 850px) {
             .animation-column {
                 width: 100vw; position: fixed; top: 0; left: 0;
-                border-right: none; opacity: 0; 
-                pointer-events: none; z-index: 1;
+                opacity: 0; pointer-events: none; z-index: 1;
             }
             .text-column { width: 100vw; z-index: 50; }
             #sling-step { height: 120vh; align-items: flex-end; padding-bottom: 5vh; }
@@ -113,7 +114,7 @@
 
     <section class="signup-zone">
         <h1 style="font-weight:900; font-size: clamp(4rem, 12vw, 6rem); margin: 0; letter-spacing: -5px;">aeio_</h1>
-        <p class="hero-sub">your day changes, your bag should too 111</p>
+        <p class="hero-sub">your day changes, your bag should too 222</p>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
             <button>ACCESS</button>
@@ -126,6 +127,7 @@
                 <g id="layer1">
                     <path id="morph-path-main" d="m 18.216194,79.826516 c 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363567,-4.03057 30.363567,-4.03057 l 42.585305,-4.7493 c 0,0 20.00202,-2.82471 19.31494,10.00102 -0.6871,12.82573 -0.22903,32.29336 -0.22903,32.29336 0,0 1.01705,4.783668 -4.96234,5.87846 -27.04083,4.951016 -38.277435,6.427255 -88.711319,12.44401 -8.619306,0.49342 -17.5765,-2.401611 -21.808665,-5.28776 0,0 -2.529868,-1.028199 -2.450468,-7.258614 -0.0152,-1.44171 -0.195328,2.370234 3.678426,4.491574 z" />
                     <path id="path1-1" d="m 14.526805,74.200506 c 0,0 -0.184465,3.50483 3.689289,5.62617 3.873756,2.12134 9.223226,4.24268 9.223226,4.24268 0,0 5.165006,1.47572 5.072775,-3.96598 -0.09223,-5.44171 0.09223,-21.02896 0.09223,-21.02896 l -0.04959,-10.44149 c 0,0 -0.878811,-9.36399 7.880943,-12.58843 8.759753,-3.22445 30.363562,-4.03057 30.363562,-4.03057 l 43.53459,-4.61369 c 10.7814,-1.32027 20.75393,5.93662 2.94199,-6.91577 -7.43272,-5.36316 -14.99434,-4.18072 -32.62661,-2.2646 -17.62175,1.91498 -42.539614,4.53999 -52.933081,6.15922 -12.199418,1.90058 -15.967734,6.21551 -16.645477,17.45201 z" />
+                    
                     <g id="g3" transform="translate(-34.26396,-121.14757)">
                         <path d="m 49.507718,161.18626 c 0,0 -7.164891,1.80198 -7.090257,0.57663 0.07464,-1.22536 7.090257,-0.57663 7.090257,-0.57663 z" />
                         <path d="m 42.55793,161.76355 0.289509,11.00137 c 0,0 5.428306,1.01329 6.296835,0.14476 0.868529,-0.86853 0,0 0,0 l 0.361889,-11.72514 c 0,0 -4.559777,1.51991 -6.948233,0.57901 z" />
@@ -167,7 +169,7 @@
         </div>
     </div>
 
-    <section class="signup-zone" id="footer-zone" style="height: 100vh;">
+    <section class="signup-zone" id="footer-zone">
         <h2 style="font-weight:900; font-size: 3rem; margin: 0; letter-spacing: -3px;">JOIN UNIT 500</h2>
         <div class="email-field">
             <input type="email" placeholder="IDENTIFY@EMAIL.COM">
@@ -199,7 +201,7 @@
             scrollTrigger: {
                 trigger: "#master-trigger",
                 start: "top center",
-                end: "+=100%", 
+                end: "bottom center", // Animation now finishes exactly as the last section leaves
                 scrub: 0.5
             }
         });
